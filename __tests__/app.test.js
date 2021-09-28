@@ -19,6 +19,24 @@ describe('demo routes', () => {
     });
   });
 
+  it('creates/POST a new character in our database', () => {
+    return request(app)
+      .post('/api/character')
+      .send({     
+        'name': 'Simon Kaine',
+        'status': 'Alive',
+        'species': 'Alien Beast and Lord Of All Space and Time', })
+      .then(res => {
+        console.log('POST TEST RESPONSE BODY', res.body);
+        expect(res.body).toEqual({
+          'id': '1', // Should i make this one?
+          'name': 'Simon Kaine',
+          'status': 'Alive',
+          'species': 'Alien Beast and Lord Of All Space and Time',
+        });
+      });
+  });
+
   afterAll(() => {
     pool.end();
   });
