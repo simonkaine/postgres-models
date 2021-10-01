@@ -22,12 +22,13 @@ describe('demo routes', () => {
   // }); 
 
   it('should GET all data back from the database', async () => {
-    await request(app).post('/api/character').send(); 
+    await request(app).post('/api/character'); 
     return request(app)
     .get('/api/character').then((res) => {
   
       expect(res.body).toEqual(expect.arrayContaining([expect.objectContaining( 
         { 
+          'id': expect.any(String),
           'name': expect.any(String),
           'status': expect.any(String),
           'species': expect.any(String)
@@ -41,9 +42,9 @@ describe('demo routes', () => {
       .post('/api/character').send();
       return request(app).get('/api/character')
       .then(res => {
-        console.log('!!!!!!!!!!!body', res.body);
         expect(res.body).toEqual(expect.arrayContaining([expect.objectContaining( 
           { 
+            'id': expect.any(String),
             'name': expect.any(String),
             'status': expect.any(String),
             'species': expect.any(String)
@@ -70,6 +71,31 @@ describe('demo routes', () => {
         });
       });
   });
+
+  it('should PATCH an character by id', async () => {
+    await request(app).post('/api/character').send({ 
+      id: '1',
+      name: 'Rick Sanchez', 
+      status: 'Alive', 
+      species: 'Human',
+     });
+    await request(app).patch('/api/character/1').send({
+      name: 'Simon Kaine', 
+      status: 'Chillen', 
+      species: 'Borg',
+     });
+
+    return request(app)
+      .get('/api/character/1')
+      .then(res => {
+        expect(res.body).toEqual({
+          id: '1',
+          name: 'Simon Kaine', 
+          status: 'Chillen', 
+          species: 'Borg',
+        });
+      });
+  });  
 
   afterAll(() => {
     pool.end();
