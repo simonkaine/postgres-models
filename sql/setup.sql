@@ -1,8 +1,15 @@
-DROP TABLE IF EXISTS characters;
+DROP TABLE IF EXISTS characters, locations;
 
 CREATE TABLE characters (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
     status TEXT NOT NULL,
     species TEXT NOT NULL
-)
+);
+
+CREATE TABLE locations (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL,
+    dimension TEXT NOT NULL
+);

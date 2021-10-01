@@ -21,7 +21,7 @@ describe('demo routes', () => {
   //   });
   // }); 
 
-  it('should GET all data back from the database', async () => {
+  xit('should GET all data back from the database', async () => {
     await request(app).post('/api/character'); 
     return request(app)
     .get('/api/character').then((res) => {
@@ -37,7 +37,7 @@ describe('demo routes', () => {
     });
   });
 
-  it('creates/POST to our database', async () => {
+  xit('creates/POST to our database', async () => {
     await request(app)
       .post('/api/character').send();
       return request(app).get('/api/character')
@@ -53,7 +53,7 @@ describe('demo routes', () => {
       });
   });
 
-  it('should GET newly created character by ID', async () => {
+  xit('should GET newly created character by ID', async () => {
     await request(app).post('/api/character').send({
           id: '1', 
           name: 'Rick Sanchez', 
@@ -72,7 +72,7 @@ describe('demo routes', () => {
       });
   });
 
-  it('should PATCH an character by id', async () => {
+  xit('should PATCH an character by id', async () => {
     await request(app).post('/api/character').send({ 
       id: '1',
       name: 'Rick Sanchez', 
@@ -97,7 +97,7 @@ describe('demo routes', () => {
       });
   });  
 
-  it('should DELETE a character by id', async () => {
+  xit('should DELETE a character by id', async () => {
     await request(app).post('/api/character').send({           
       id: '1',
       name: 'Simon Kaine', 
