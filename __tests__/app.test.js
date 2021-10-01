@@ -19,15 +19,16 @@ describe('demo routes', () => {
   //       species: 'Human'
   //     });
   //   });
-  // });
+  // }); 
 
-  it('should GET all data back from the database', async () => {
-    await request(app).post('/api/character').send(); 
+  xit('should GET all data back from the database', async () => {
+    await request(app).post('/api/character'); 
     return request(app)
     .get('/api/character').then((res) => {
   
       expect(res.body).toEqual(expect.arrayContaining([expect.objectContaining( 
         { 
+          'id': expect.any(String),
           'name': expect.any(String),
           'status': expect.any(String),
           'species': expect.any(String)
@@ -36,22 +37,23 @@ describe('demo routes', () => {
     });
   });
 
-  // it('creates/POST to our database', async () => {
-  //   await request(app)
-  //     .post('/api/character').send()
-  //     .then(res => {
-  //       console.log('!!!!!!!!!!!!', res.body);
-  //       expect(res.body).toEqual(expect.arrayContaining([expect.objectContaining( 
-  //         { 
-  //           'name': expect.any(String),
-  //           'status': expect.any(String),
-  //           'species': expect.any(String)
-  //         }
-  //       )]));
-  //     });
-  // });
+  xit('creates/POST to our database', async () => {
+    await request(app)
+      .post('/api/character').send();
+      return request(app).get('/api/character')
+      .then(res => {
+        expect(res.body).toEqual(expect.arrayContaining([expect.objectContaining( 
+          { 
+            'id': expect.any(String),
+            'name': expect.any(String),
+            'status': expect.any(String),
+            'species': expect.any(String)
+          }
+        )]));
+      });
+  });
 
-  it('should GET newly created character by ID', async () => {
+  xit('should GET newly created character by ID', async () => {
     await request(app).post('/api/character').send({
           id: '1', 
           name: 'Rick Sanchez', 
@@ -67,6 +69,45 @@ describe('demo routes', () => {
           status: 'Alive', 
           species: 'Human',
         });
+      });
+  });
+
+  xit('should PATCH an character by id', async () => {
+    await request(app).post('/api/character').send({ 
+      id: '1',
+      name: 'Rick Sanchez', 
+      status: 'Alive', 
+      species: 'Human',
+     });
+    await request(app).patch('/api/character/1').send({
+      name: 'Simon Kaine', 
+      status: 'Chillen', 
+      species: 'Borg',
+     });
+
+    return request(app)
+      .get('/api/character/1')
+      .then(res => {
+        expect(res.body).toEqual({
+          id: '1',
+          name: 'Simon Kaine', 
+          status: 'Chillen', 
+          species: 'Borg',
+        });
+      });
+  });  
+
+  xit('should DELETE a character by id', async () => {
+    await request(app).post('/api/character').send({           
+      id: '1',
+      name: 'Simon Kaine', 
+      status: 'Chillen', 
+      species: 'Borg', 
+    });
+    return request(app)
+      .delete('/api/character/1')
+      .then(res => {
+        expect(res.body).toEqual({});
       });
   });
 
