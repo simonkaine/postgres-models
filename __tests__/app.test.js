@@ -19,7 +19,7 @@ describe('demo routes', () => {
   //       species: 'Human'
   //     });
   //   });
-  // });
+  // }); 
 
   it('should GET all data back from the database', async () => {
     await request(app).post('/api/character').send(); 
@@ -36,20 +36,21 @@ describe('demo routes', () => {
     });
   });
 
-  // it('creates/POST to our database', async () => {
-  //   await request(app)
-  //     .post('/api/character').send()
-  //     .then(res => {
-  //       console.log('!!!!!!!!!!!!', res.body);
-  //       expect(res.body).toEqual(expect.arrayContaining([expect.objectContaining( 
-  //         { 
-  //           'name': expect.any(String),
-  //           'status': expect.any(String),
-  //           'species': expect.any(String)
-  //         }
-  //       )]));
-  //     });
-  // });
+  it('creates/POST to our database', async () => {
+    await request(app)
+      .post('/api/character').send();
+      return request(app).get('/api/character')
+      .then(res => {
+        console.log('!!!!!!!!!!!body', res.body);
+        expect(res.body).toEqual(expect.arrayContaining([expect.objectContaining( 
+          { 
+            'name': expect.any(String),
+            'status': expect.any(String),
+            'species': expect.any(String)
+          }
+        )]));
+      });
+  });
 
   it('should GET newly created character by ID', async () => {
     await request(app).post('/api/character').send({
