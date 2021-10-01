@@ -97,6 +97,20 @@ describe('demo routes', () => {
       });
   });  
 
+  it('should DELETE a character by id', async () => {
+    await request(app).post('/api/character').send({           
+      id: '1',
+      name: 'Simon Kaine', 
+      status: 'Chillen', 
+      species: 'Borg', 
+    });
+    return request(app)
+      .delete('/api/character/1')
+      .then(res => {
+        expect(res.body).toEqual({});
+      });
+  });
+
   afterAll(() => {
     pool.end();
   });
