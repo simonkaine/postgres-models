@@ -9,7 +9,7 @@ describe('demo routes', () => {
       return setup(pool);
     });
 
-    it('should GET all data back from the location database', async () => {
+    xit('should GET all data back from the location database', async () => {
         await request(app).post('/api/location'); 
         return request(app)
         .get('/api/location').then((res) => {
@@ -25,7 +25,7 @@ describe('demo routes', () => {
         });
       });
 
-      it('creates/POST location data to our database', async () => {
+      xit('creates/POST location data to our database', async () => {
         await request(app)
           .post('/api/location').send();
           return request(app).get('/api/location')
@@ -41,7 +41,7 @@ describe('demo routes', () => {
           });
       });
 
-      it('gets location by id', async () => {
+      xit('gets location by id', async () => {
         await request(app).post('/api/location').send({
           id: '1',
           name: 'Earth (C-137)',
@@ -58,7 +58,7 @@ describe('demo routes', () => {
         });  //Math.Floor(Math.random(array.length)) use a random function to grab a random index. add array sub index
       });
 
-      it('should PATCH an location by id', async () => {
+      xit('should PATCH an location by id', async () => {
         await request(app).post('/api/location').send({ 
           id: '1',
           name: 'Earth (C-137)',
@@ -83,7 +83,7 @@ describe('demo routes', () => {
           });
       });  
 
-      it('should DELETE a location by id', async () => {
+      xit('should DELETE a location by id', async () => {
         await request(app).post('/api/location').send({           
           id: '1',
           name: 'Atlantis',
@@ -95,7 +95,7 @@ describe('demo routes', () => {
           .then(res => {
             expect(res.body).toEqual({});
           });
-      });
+      }); 
 
     afterAll(() => {
         pool.end();

@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS characters, locations;
+DROP TABLE IF EXISTS characters, locations, episodes;
 
 CREATE TABLE characters (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -12,4 +12,10 @@ CREATE TABLE locations (
     name TEXT NOT NULL,
     type TEXT NOT NULL,
     dimension TEXT NOT NULL
+);
+
+CREATE TABLE episodes (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    episode TEXT NOT NULL
 );
