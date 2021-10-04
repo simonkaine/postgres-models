@@ -35,9 +35,65 @@ describe('demo routes', () => {
                 'id': expect.any(String),
                 'name': expect.any(String),
                 'type': expect.any(String),
-                'dimension': expect.any(String)
+                'dimension': expect.any(String) 
               }
             )]));
+          });
+      });
+
+      it('gets location by id', async () => {
+        await request(app).post('/api/location').send({
+          id: '1',
+          name: 'Earth (C-137)',
+          type: 'Planet',
+          dimension: 'Dimension C-137'
+        });
+        return request(app).get('/api/location/1').then(res => {
+          expect(res.body).toEqual({
+            id: '1',
+            name: 'Earth (C-137)',
+            type: 'Planet',
+            dimension: 'Dimension C-137'
+          }); 
+        });  //Math.Floor(Math.random(array.length)) use a random function to grab a random index. add array sub index
+      });
+
+      it('should PATCH an location by id', async () => {
+        await request(app).post('/api/location').send({ 
+          id: '1',
+          name: 'Earth (C-137)',
+          type: 'Planet',
+          dimension: 'Dimension C-137'
+         });
+        await request(app).patch('/api/location/1').send({
+          name: 'Atlantis',
+          type: 'Sea World',
+          dimension: 'Free Willy'
+         });
+    
+        return request(app)
+          .get('/api/location/1')
+          .then(res => {
+            expect(res.body).toEqual({
+              id: '1',
+              name: 'Atlantis',
+              type: 'Sea World',
+              dimension: 'Free Willy'
+            });
+          });
+      });  
+
+      it('should DELETE a location by id', async () => {
+        await request(app).post('/api/location').send({           
+          id: '1',
+          name: 'Atlantis',
+          type: 'Sea World',
+          dimension: 'Free Willy'
+        });
+        return request(app)
+          .delete('/api/location/1')
+          .then(res => {
+            expect(res.body).toEqual({});
           });
       });
 
