@@ -39,7 +39,7 @@ describe('demo routes', () => {
       });
     });
 
-      xit('gets episode by id', async () => {
+      it('gets episode by id', async () => {
         await request(app).post('/api/episode').send({
           id: '1',
           name: 'Pilot',
