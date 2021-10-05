@@ -10,50 +10,40 @@ describe('demo routes', () => {
     return setup(pool);
   });
 
-  // it('gets munged api data', () => {
-  //   return request(app).get('/api/character').then((res) => {
-  //     expect(res.body).toEqual({
-  //       id: '1',
-  //       name: 'Rick Sanchez', 
-  //       status: 'Alive', 
-  //       species: 'Human'
-  //     });
-  //   });
-  // }); 
+  it('creates/POST to our database', () => {
+    return request(app)
+      .post('/api/character').send({
+      name: 'Rick Sanchez', 
+      status: 'Alive', 
+      species: 'Human'
+    })
+      .then(res => {
+        expect(res.body).toEqual(
+          { 
+            id: '1',
+            name: 'Rick Sanchez', 
+            status: 'Alive', 
+            species: 'Human'
+          }
+        );
+      });
+  });
 
-  xit('should GET all data back from the database', async () => {
+    it('should GET all data back from the database', async () => {
     await request(app).post('/api/character'); 
     return request(app)
     .get('/api/character').then((res) => {
   
-      expect(res.body).toEqual(expect.arrayContaining([expect.objectContaining( 
-        { 
-          'id': expect.any(String),
-          'name': expect.any(String),
-          'status': expect.any(String),
-          'species': expect.any(String)
-        }
-      )]));
+      expect(res.body).toEqual({ 
+        id: '1',
+        name: 'Rick Sanchez', 
+        status: 'Alive', 
+        species: 'Human'
+      });
     });
   });
 
-  xit('creates/POST to our database', async () => {
-    await request(app)
-      .post('/api/character').send();
-      return request(app).get('/api/character')
-      .then(res => {
-        expect(res.body).toEqual(expect.arrayContaining([expect.objectContaining( 
-          { 
-            'id': expect.any(String),
-            'name': expect.any(String),
-            'status': expect.any(String),
-            'species': expect.any(String)
-          }
-        )]));
-      });
-  });
-
-  xit('should GET newly created character by ID', async () => {
+  it('should GET newly created character by ID', async () => {
     await request(app).post('/api/character').send({
           id: '1', 
           name: 'Rick Sanchez', 
@@ -63,7 +53,7 @@ describe('demo routes', () => {
     return request(app)
       .get('/api/character/1').then(res => {
   
-        expect(res.body).toEqual({ // res.body[0] CORRECT<<<<<<< ???
+        expect(res.body).toEqual({ 
           id: '1', 
           name: 'Rick Sanchez', 
           status: 'Alive', 
@@ -72,7 +62,7 @@ describe('demo routes', () => {
       });
   });
 
-  xit('should PATCH an character by id', async () => {
+  it('should PATCH an character by id', async () => {
     await request(app).post('/api/character').send({ 
       id: '1',
       name: 'Rick Sanchez', 
@@ -97,7 +87,7 @@ describe('demo routes', () => {
       });
   });  
 
-  xit('should DELETE a character by id', async () => {
+  it('should DELETE a character by id', async () => {
     await request(app).post('/api/character').send({           
       id: '1',
       name: 'Simon Kaine', 

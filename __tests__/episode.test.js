@@ -9,7 +9,7 @@ describe('demo routes', () => {
       return setup(pool);
     });
 
-    it('should GET all data back from the episodes database', async () => {
+    xit('should GET all data back from the episodes database', async () => {
         await request(app).post('/api/episode'); 
         return request(app)
         .get('/api/episode').then((res) => {
@@ -24,7 +24,7 @@ describe('demo routes', () => {
         });
       });
 
-      it('creates/POST episodes data to our database', async () => {
+      xit('creates/POST episodes data to our database', async () => {
         await request(app)
           .post('/api/episode').send();
           return request(app).get('/api/episode')
@@ -39,7 +39,7 @@ describe('demo routes', () => {
           });
       });
 
-      it('gets episode by id', async () => {
+      xit('gets episode by id', async () => {
         await request(app).post('/api/episode').send({
           id: '1',
           name: 'Pilot',
@@ -54,7 +54,7 @@ describe('demo routes', () => {
         });  //Math.Floor(Math.random(array.length)) use a random function to grab a random index. add array sub index
       });
 
-      it('should PATCH an episode by id', async () => {
+      xit('should PATCH an episode by id', async () => {
         await request(app).post('/api/episode').send({ 
             id: '1',
             name: 'Pilot',
@@ -76,7 +76,7 @@ describe('demo routes', () => {
           });
       });  
 
-      it('should DELETE a episode by id', async () => {
+      xit('should DELETE a episode by id', async () => {
         await request(app).post('/api/episode').send({           
             id: '1',
             name: 'BEST EPISODE EVER',
@@ -92,4 +92,5 @@ describe('demo routes', () => {
     afterAll(() => {
         pool.end();
       });
-});
+}); 
+ 
