@@ -54,7 +54,7 @@ describe('demo routes', () => {
         });  //Math.Floor(Math.random(array.length)) use a random function to grab a random index. add array sub index
       });
 
-      xit('should PATCH an episode by id', async () => {
+      it('should PATCH an episode by id', async () => {
         await request(app).post('/api/episode').send({ 
             id: '1',
             name: 'Pilot',
