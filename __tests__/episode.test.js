@@ -11,7 +11,7 @@ describe('demo routes', () => {
 
     it('creates/POST to our database', () => {
       return request(app)
-        .post('/api/character').send({
+        .post('/api/episode').send({
         name: 'Pilot', 
         episode: 'S01E01'
       })
