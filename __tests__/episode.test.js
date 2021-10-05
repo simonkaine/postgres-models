@@ -9,7 +9,24 @@ describe('demo routes', () => {
       return setup(pool);
     });
 
-    xit('should GET all data back from the episodes database', async () => {
+    it('creates/POST to our database', () => {
+      return request(app)
+        .post('/api/character').send({
+        name: 'Pilot', 
+        episode: 'S01E01'
+      })
+        .then(res => {
+          expect(res.body).toEqual(
+            { 
+              id: '1',
+              name: 'Pilot',
+              episode: 'S01E01'
+            }
+          );
+        });
+    });
+
+      xit('should GET all data back from the episodes database', async () => {
         await request(app).post('/api/episode'); 
         return request(app)
         .get('/api/episode').then((res) => {
@@ -22,21 +39,6 @@ describe('demo routes', () => {
             }
           )]));
         });
-      });
-
-      xit('creates/POST episodes data to our database', async () => {
-        await request(app)
-          .post('/api/episode').send();
-          return request(app).get('/api/episode')
-          .then(res => {
-            expect(res.body).toEqual(expect.arrayContaining([expect.objectContaining( 
-              { 
-                'id': expect.any(String),
-                'name': expect.any(String),
-                'episode': expect.any(String)
-              }
-            )])); 
-          });
       });
 
       xit('gets episode by id', async () => {
