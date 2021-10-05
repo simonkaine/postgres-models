@@ -76,7 +76,7 @@ describe('demo routes', () => {
           });
       });  
 
-      xit('should DELETE a episode by id', async () => {
+      it('should DELETE a episode by id', async () => {
         await request(app).post('/api/episode').send({           
             id: '1',
             name: 'BEST EPISODE EVER',
