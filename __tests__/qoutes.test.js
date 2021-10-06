@@ -71,6 +71,18 @@ describe('demo routes', () => {
           });
       });  
 
+      it('should DELETE a qoute by id', async () => {
+        await request(app).post('/api/qoutes').send({           
+          id: '1',
+          character: 'Dr Disrespect',
+        });
+        return request(app)
+          .delete('/api/qoutes/1')
+          .then(res => {
+            expect(res.body).toEqual({});
+          });
+      }); 
+
     afterAll(() => {
         pool.end();
       });
