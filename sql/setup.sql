@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS characters, locations, episodes;
+DROP TABLE IF EXISTS characters, locations, episodes, morty;
 
 CREATE TABLE characters (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -19,3 +19,10 @@ CREATE TABLE episodes (
     name TEXT NOT NULL,
     episode TEXT NOT NULL
 );
+
+CREATE TABLE morty (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    gender TEXT NOT NULL
+);
+
