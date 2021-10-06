@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS characters, locations, episodes;
+DROP TABLE IF EXISTS characters, locations, episodes, qoutes, ghibli;
 
 CREATE TABLE characters (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -19,3 +19,14 @@ CREATE TABLE episodes (
     name TEXT NOT NULL,
     episode TEXT NOT NULL
 );
+
+CREATE TABLE qoutes (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    character TEXT NOT NULL
+);
+
+CREATE TABLE ghibli (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title TEXT NOT NULL
+);
+
