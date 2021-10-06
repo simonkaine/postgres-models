@@ -49,6 +49,25 @@ describe('demo routes', () => {
         });  
       });
 
+      it('should PATCH an ghibli by id', async () => {
+        await request(app).post('/films').send({ 
+            id: '1',
+            title: 'Castle in the Sky',
+         });
+        await request(app).patch('/films/1').send({
+            title: 'MORTAL KOMBAT',
+         });
+    
+        return request(app)
+          .get('/films/1')
+          .then(res => {
+            expect(res.body).toEqual({
+              id: '1',
+              title: 'MORTAL KOMBAT',
+            });
+          });
+      }); 
+
     afterAll(() => {
         pool.end();
       });
