@@ -9,7 +9,26 @@ describe('demo routes', () => {
       return setup(pool);
     });
 
-    xit('should GET all data back from the location database', async () => {
+    it('creates/POST to our location database', () => {
+      return request(app)
+        .post('/api/location').send({
+          name: 'Earth (C-137)',
+          type: 'Planet',
+          dimension: 'Dimension C-137'
+      })
+        .then(res => {
+          expect(res.body).toEqual(
+            { 
+              id: '1',
+              name: 'Earth (C-137)',
+              type: 'Planet',
+              dimension: 'Dimension C-137'
+            }
+          );
+        });
+    });
+
+      xit('should GET all data back from the location database', async () => {
         await request(app).post('/api/location'); 
         return request(app)
         .get('/api/location').then((res) => {
@@ -23,22 +42,6 @@ describe('demo routes', () => {
             }
           )]));
         });
-      });
-
-      xit('creates/POST location data to our database', async () => {
-        await request(app)
-          .post('/api/location').send();
-          return request(app).get('/api/location')
-          .then(res => {
-            expect(res.body).toEqual(expect.arrayContaining([expect.objectContaining( 
-              { 
-                'id': expect.any(String),
-                'name': expect.any(String),
-                'type': expect.any(String),
-                'dimension': expect.any(String) 
-              }
-            )]));
-          });
       });
 
       xit('gets location by id', async () => {
