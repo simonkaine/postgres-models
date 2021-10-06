@@ -61,7 +61,7 @@ describe('demo routes', () => {
         });  
       });
 
-      xit('should PATCH an location by id', async () => {
+      it('should PATCH an location by id', async () => {
         await request(app).post('/api/location').send({ 
           id: '1',
           name: 'Earth (C-137)',
