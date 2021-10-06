@@ -9,7 +9,7 @@ describe('demo routes', () => {
       return setup(pool);
     });
 
-    it.only('creates/POST to the qoutes database', () => {
+    it('creates/POST to the qoutes database', () => {
         return request(app)
           .post('/api/qoutes').send({
             character: 'Bender',
@@ -23,6 +23,20 @@ describe('demo routes', () => {
               }
             );
           });
+      });
+
+      it('should GET all data back from the qoutes database', async () => {
+        await request(app).post('/api/qoutes'); 
+        return request(app)
+        .get('/api/qoutes').then((res) => {
+      
+          expect(res.body).toEqual(
+            { 
+              id: '1',
+              character: 'Bender',
+            }
+          );
+        }); 
       });
 
     afterAll(() => {
