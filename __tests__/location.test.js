@@ -44,7 +44,7 @@ describe('demo routes', () => {
         }); 
       });
 
-      xit('gets location by id', async () => {
+      it('gets location by id', async () => {
         await request(app).post('/api/location').send({
           id: '1',
           name: 'Earth (C-137)',
@@ -58,7 +58,7 @@ describe('demo routes', () => {
             type: 'Planet',
             dimension: 'Dimension C-137'
           }); 
-        });  //Math.Floor(Math.random(array.length)) use a random function to grab a random index. add array sub index
+        });  
       });
 
       xit('should PATCH an location by id', async () => {
