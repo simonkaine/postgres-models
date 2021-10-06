@@ -15,6 +15,7 @@ describe('demo routes', () => {
             title: 'Castle in the Sky',
         })
           .then(res => {
+              console.log('RES BODY', res.body);
             expect(res.body).toEqual(
               { 
                 id: '1',
