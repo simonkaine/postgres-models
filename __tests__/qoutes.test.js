@@ -39,6 +39,19 @@ describe('demo routes', () => {
         }); 
       });
 
+      it('gets qoute by id', async () => {
+        await request(app).post('/api/qoutes').send({
+            id: '1',
+            character: 'Bender',
+        });
+        return request(app).get('/api/qoutes/1').then(res => {
+          expect(res.body).toEqual({
+              id: '1',
+              character: 'Bender',
+          }); 
+        });  
+      });
+
     afterAll(() => {
         pool.end();
       });
