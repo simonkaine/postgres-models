@@ -28,17 +28,17 @@ describe('demo routes', () => {
         });
     });
 
-      xit('should GET all data back from the location database', async () => {
+      it('should GET all data back from the location database', async () => {
         await request(app).post('/api/location'); 
         return request(app)
         .get('/api/location').then((res) => {
       
           expect(res.body).toEqual(expect.arrayContaining([expect.objectContaining( 
             { 
-              'id': expect.any(String),
-              'name': expect.any(String),
-              'type': expect.any(String),
-              'dimension': expect.any(String)
+              id: '1',
+              name: 'Earth (C-137)',
+              type: 'Planet',
+              dimension: 'Dimension C-137'
             }
           )]));
         });
