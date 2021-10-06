@@ -52,6 +52,25 @@ describe('demo routes', () => {
         });  
       });
 
+      it('should PATCH qoute by id', async () => {
+        await request(app).post('/api/qoutes').send({ 
+          id: '1',
+          character: 'Bender',
+         });
+        await request(app).patch('/api/qoutes/1').send({
+          character: 'Dr Disrespect',
+         });
+    
+        return request(app)
+          .get('/api/qoutes/1')
+          .then(res => {
+            expect(res.body).toEqual({
+              id: '1',
+              character: 'Dr Disrespect',
+            });
+          });
+      });  
+
     afterAll(() => {
         pool.end();
       });
