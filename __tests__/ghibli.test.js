@@ -36,6 +36,19 @@ describe('demo routes', () => {
         });
       });
 
+      it('gets ghibli title by id', async () => {
+        await request(app).post('/films').send({
+            id: '1',
+            title: 'Castle in the Sky',
+        });
+        return request(app).get('/films/1').then(res => {
+          expect(res.body).toEqual({
+            id: '1',
+            title: 'Castle in the Sky',
+          }); 
+        });  
+      });
+
     afterAll(() => {
         pool.end();
       });
