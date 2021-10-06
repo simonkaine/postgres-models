@@ -9,18 +9,19 @@ describe('demo routes', () => {
       return setup(pool);
     });
 
-    it('creates/POST to the rick database', () => {
+    it.only('creates/POST to the rick database', () => {
         return request(app)
           .post('/api/character/2').send({
             name: 'Morty Smith', 
-            gender: 'male'
+            gender: 'Male'
         })
           .then(res => {
+            console.log('RESBODY', res.body);
             expect(res.body).toEqual(
               { 
                 id: '1',
                 name: 'Morty Smith', 
-                gender: 'male'
+                gender: 'Male'
               }
             );
           });
