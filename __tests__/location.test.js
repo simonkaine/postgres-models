@@ -33,15 +33,15 @@ describe('demo routes', () => {
         return request(app)
         .get('/api/location').then((res) => {
       
-          expect(res.body).toEqual(expect.arrayContaining([expect.objectContaining( 
+          expect(res.body).toEqual(
             { 
               id: '1',
               name: 'Earth (C-137)',
               type: 'Planet',
               dimension: 'Dimension C-137'
             }
-          )]));
-        });
+          );
+        }); 
       });
 
       xit('gets location by id', async () => {
