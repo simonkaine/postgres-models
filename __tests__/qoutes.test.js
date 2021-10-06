@@ -15,7 +15,6 @@ describe('demo routes', () => {
             character: 'Bender',
         })
           .then(res => {
-            console.log('RESBODY', res.body);
             expect(res.body).toEqual(
               { 
                 id: '1',
