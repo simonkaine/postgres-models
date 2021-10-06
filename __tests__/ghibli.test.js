@@ -68,6 +68,18 @@ describe('demo routes', () => {
           });
       }); 
 
+      it('should DELETE a title by id', async () => {
+        await request(app).post('/films').send({           
+            id: '1',
+            title: 'MORTAL KOMBAT',
+        });
+        return request(app)
+          .delete('/films/1')
+          .then(res => {
+            expect(res.body).toEqual({});
+          });
+      }); 
+
     afterAll(() => {
         pool.end();
       });
