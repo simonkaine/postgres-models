@@ -9,19 +9,17 @@ describe('demo routes', () => {
       return setup(pool);
     });
 
-    it.only('creates/POST to the rick database', () => {
+    it.only('creates/POST to the qoutes database', () => {
         return request(app)
-          .post('/api/character/2').send({
-            name: 'Morty Smith', 
-            gender: 'Male'
+          .post('/api/qoutes').send({
+            character: 'Bender',
         })
           .then(res => {
             console.log('RESBODY', res.body);
             expect(res.body).toEqual(
               { 
                 id: '1',
-                name: 'Morty Smith', 
-                gender: 'Male'
+                character: 'Bender',
               }
             );
           });
