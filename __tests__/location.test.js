@@ -86,7 +86,7 @@ describe('demo routes', () => {
           });
       });  
 
-      xit('should DELETE a location by id', async () => {
+      it('should DELETE a location by id', async () => {
         await request(app).post('/api/location').send({           
           id: '1',
           name: 'Atlantis',
