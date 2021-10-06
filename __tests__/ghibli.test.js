@@ -25,6 +25,17 @@ describe('demo routes', () => {
           });
       });
 
+      it('should GET all the ghibli data back from the database', async () => {
+        await request(app).post('/films'); 
+        return request(app)
+        .get('/films').then((res) => {
+          expect(res.body).toEqual({ 
+            id: '1',
+            title: 'Castle in the Sky',
+          });
+        });
+      });
+
     afterAll(() => {
         pool.end();
       });
